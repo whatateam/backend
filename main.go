@@ -3,10 +3,10 @@ package main
 import (
 	"net/http"
 	"os"
+	"cmd/user"
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	"github.com/whatateam/backend/cmd/user"
 )
 
 func main() {
