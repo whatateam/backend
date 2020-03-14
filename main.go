@@ -7,7 +7,7 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 
-	"github.com/whatateam/backend/cmd/user"
+	"github.com/whatateam/backend/cmd"
 )
 
 func main() {
@@ -20,17 +20,10 @@ func main() {
 		w.Write([]byte("Not Implemented"))
 	})
 
-	r.Handle("/status", StatusHandler).Methods("GET")
-	r.Handle("/users", user.UsersHandler).Methods("GET")
+	r.Handle("/users", cmd.UsersHandler).Methods("GET")
 	r.Handle("/teams", NotImplemented).Methods("GET")
 	r.Handle("/projects", NotImplemented).Methods("GET")
 	r.Handle("/tasks", NotImplemented).Methods("GET")
 
-	r.Handle("/products/{slug}/feedback", NotImplemented).Methods("POST")
-
 	http.ListenAndServe(":3000", handlers.LoggingHandler(os.Stdout, r))
 }
-
-var StatusHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("API is up and running"))
-})
